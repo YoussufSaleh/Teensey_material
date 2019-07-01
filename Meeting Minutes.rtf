@@ -1,0 +1,119 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\froman\fcharset0 Times-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+Diodes are polar. Long end is the positive side. The resister goes in series with them to prevent a fuse fault.\'a0 \
+\
+Cool term up.\'a0 \
+Configure: on options and identify the correct port entry.\'a0 \
+\
+Terminal option and choose local echo.\'a0 \
+This allows us to print what we are typing in.\'a0 \
+\
+Make sure you open cool term after connection. This should flag terminal id. Connect and then type ? For commands \
+\
+We are mainly interested in digital pins which will encode digital inputs and outputs. That applies for any of the grey pins on the sides.\'a0 \
+\
+Probably don\'92t need the other pins, however the analogue pins can read a voltage on its input but there are restrictions on how much voltage you can put through there. Speak to Chris if you want this.\'a0 \
+\
+Inverse of the analogue is the PWM pin which is a pulse width modulated wave. If filtered, can give an analogue signal.\'a0 \
+\
+I2c or SPI are for more specific peripheral software. Probably won\'92t need this.\'a0 \
+\
+The teensy is powered from the Usb which provides it with a 5 volt power source.\'a0 \
+\
+There are ways to disconnect this but we don\'92t need that.\'a0 \
+\
+For reference, that will appear on the Vin pin. That is the input voltage to the board and the port on the other side is the ground port.\'a0 \
+\
+\
+If you want 0 volts you can look there.\'a0 \
+\
+Horizontal leads connect horizontally and vertical ones vertically.\'a0 \
+\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f1\b \cf2 Important:\'a0
+\f0\b0 \
+\
+There is a voltage regulator on the chip and it steps down input voltage from 5 to 3.3 volts. That is the power that is what is then fed into the chip as that is its power requirement. All its digital outputs are 2.3 volt logic.\'a0 \
+\
+Some pins to accept 5 volts. \'a0If you have a 5 volt TTL (transistor-transistor-logic) you can run that through the digital pins.\'a0 \
+\
+IN principle, always need a reference to ground. Usually that is connected to the female side of the BNC connector to ensure a voltage difference (relative).\'a0 \
+\
+The centre pin of that signal should range from 0-3 volts (output).\'a0 \
+\
+Grey numbers will be the numbers we use to identify the pins.\'a0 \
+\
+There is an Led connected to pin 13.\'a0 \
+\
+Have to configure which pins you want as your output and a your input and it will remain so until you re configure the device.\'a0 \
+\
+Exception is that pin 13 is configured as an output.\'a0 \
+\
+The teensy has an interpreter on it which interprets strings to be meaningful instructions and carry them out if they are understandable.\'a0 \
+\
+To do that in Matlab, you will send strings then flush them into the device at which point it will be interpreted and send the results back.\'a0 \
+\
+Steps:\'a0 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl280\partightenfactor0
+\ls1\ilvl0\cf2 \kerning1\expnd0\expndtw0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+Compose\'a0 \uc0\u8232 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+write \uc0\u8232 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+read \uc0\u8232 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	4.	}\expnd0\expndtw0\kerning0
+return \uc0\u8232 \
+\ls1\ilvl0\kerning1\expnd0\expndtw0 {\listtext	5.	}\expnd0\expndtw0\kerning0
+Loop/end \uc0\u8232 \
+\pard\pardeftab720\sl280\partightenfactor0
+\cf2 \
+\
+Can interpret numbers.\'a0 \
+If you input number it is written onto the x register. That can be used for operations later.\'a0 \
+\
+eg. In cool terminal\'a0 \
+\
+5 \
+x \
+\
+\'a0p is the port register. If you just type p you will then copies from x. It is however preset as 13.\'a0 \
+\
+b is to break sequences. This is useful if you are working interactively with the device.\'a0 \
+\
+t harnesses the clock which is activated as soon as the power is connected.\'a0 \
+\
+The unit here is in milli seconds.\'a0 \
+\
+Bear in mind the the \'93.\'94 Character is the equivelamt of a tab. Worth knowing when you are parsing data. You would skip the first two characters then read the rest.\'a0 \
+\
+There is a command to reset the clock. This is the command \'94z\'94. \
+\
+\'93m\'94 is a pause command prior to execution of command. Number always precedes \'93m\'94. \
+\
+The string is interpreted from left to right, it will stop the interpretation for that period of time depending on where it is in the command.\'a0 \
+\
+\'931w100m0w\'94 this command turns on the led, waits 100ms and then turns it off.\'a0 \
+\
+The curly braces will take whatever is in x of the preceding number and then repeat the string between the opening and closing brace that number of times.\'a0 \
+\
+There is another variable called k. This stores the the value of x as the number of iterations of the loop being written.\'a0 \
+\
+\pard\pardeftab720\sl280\partightenfactor0
+
+\f1\b \cf2 LOOPS:\'a0
+\f0\b0 \
+
+\f1\b 10\{1w1000m0w1000m\}
+\f0\b0 \
+THIS ALLOWS 10 PULSES WITH 1 SECOND BETWEEN EACH.\'a0 \
+}
