@@ -7,7 +7,7 @@ try
     fclose(instrfind) ;
     
 end
-s = serial('/dev/tty.usbmodem40886101'); % Here you need to make sure you know the name of the serial port
+s = serial('COM4'); % Here you need to make sure you know the name of the serial port
 try
     fopen(s);
 catch ME % in case it didn't work the first time
@@ -19,8 +19,8 @@ catch ME % in case it didn't work the first time
 end
 % Communicates with the serial port (send command, flush, read output)
 %
- fprintf(s,'13pw');
- fprintf(s,'10{1w1m0w0}')
+%  fprintf(s,'2pw');
+ fprintf(s,'2po1w100m0w')
  flushinput(s)
  flushoutput(s)
  % This is the way you communicate with the device. In my case I want to send the '0e1s' command to the arduino.
