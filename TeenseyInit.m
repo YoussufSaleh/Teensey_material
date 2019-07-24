@@ -20,8 +20,12 @@ try
     fopen(portHandle);
 catch ME % in case it didn't work the first time
     if (strcmp(ME.identifier,'MATLAB:serial:fopen:opfailed'))
-        fclose(instrfind);
-        fopen(portHandle);
+        try 
+            fclose(instrfind);
+            fopen(portHandle);
+        catch ME
+            rethrow(ME);
+        end
     end
 end
 
