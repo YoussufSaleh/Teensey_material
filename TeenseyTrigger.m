@@ -27,4 +27,6 @@ if isa(portHandle, 'serial') % won't do this if just printing to console
     flushoutput(portHandle); % empty output buffer
 end
 
+WaitSecs(trigValue/1000); % wait until code has finished
+
 end
